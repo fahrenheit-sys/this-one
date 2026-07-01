@@ -1,0 +1,290 @@
+@import url("https://fonts.googleapis.com/css?family=DM+Sans:400,500,600&display=swap");
+@import '_variables.scss';
+
+html {
+	color: $text;
+	font-family: 'DM Sans', sans-serif;
+	font-optical-sizing: auto;
+	font-size: 13px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 1.2em;
+}
+
+h1, h2, h3, h4 {
+	color: $green;
+	font-weight: 500;
+	line-height: 1.2em;
+	margin: 0;
+}
+h1 {
+	font-size: 32px;
+	margin-bottom: 15px;
+}
+h2 {
+	font-size: 24px;
+}
+h3 {
+	font-size: 16px;
+}
+
+.site-header {
+	background: $green1;
+	padding: 16px 0 19px;
+
+	.navbar {
+		padding: 0;
+	}
+}
+
+.main-content .form-range::-moz-range-track { height: 6px; background-color: #dde6d5; border-radius:5px; }
+.main-content .form-range::-webkit-slider-runnable-track { height: 6px; background-color: #dde6d5; border-radius:5px; }
+
+.main-content .form-range::-webkit-slider-thumb { box-shadow: 2px 2px 6px 2px #dfe4df; height: 30px; width: 30px; margin-top: -12px; background-color: white; border-radius: 50%; }
+.main-content .form-range::-moz-range-thumb{ box-shadow: 2px 2px 6px 2px #dfe4df; height: 30px; width: 30px; margin-top: -12px; background-color: white; border-radius: 50%; }
+
+.main-content .form-range:focus::-webkit-slider-thumb{ box-shadow: 2px 2px 6px 2px #dfe4df; }
+.main-content .form-range:focus::-moz-range-thumb{ box-shadow: 2px 2px 6px 2px #dfe4df; }
+
+.main-content .form-range::-webkit-slider-thumb:active{ background-color: white; }
+.main-content .form-range::-moz-range-thumb:active{ background-color: white; }
+
+.main-content {
+	padding: 45px 35px 130px;
+
+	hr {
+		background: green;
+		border: none;
+		height: 1px;
+		margin: 30px 0 15px;
+	}
+
+	.input-group {
+		background: #fbfcfb;
+		border: 1px solid #dfe4df;
+		border-radius: 5px;
+		padding: 25px 30px;
+
+		> .row {
+			width: 100%;
+		}
+	}
+
+	.form-check-label {
+		cursor: pointer;
+	}
+	.form-check-input {
+		border-color: rgba(182, 182, 182, 1);
+		box-shadow: none;
+		cursor: pointer;
+		font-size: 14px;
+		outline: none;
+
+		&:checked {
+			background: $green;
+		}
+	}
+
+	.form-check {
+		&.toggle {
+			padding-left: 45px;
+			position: relative;
+
+			input {
+				height: 0;
+				visibility: hidden;
+				width: 0;
+
+				&:checked + label {
+					&:after {
+						background: $green;
+						left: 20px;
+					}
+				}
+			}
+
+			label {
+				font-size: 13px;
+				line-height: 20px;
+
+				&:before {
+					background: #dfe4df;
+					border-radius: 7px;
+					content: '';
+					display: block;
+					height: 14px;
+					left: 0;
+					position: absolute;
+					top: 4px;
+					width: 35px;
+				}
+
+				&:after {
+					background: white;
+					border: 1px solid #ededed;
+					border-radius: 50%;
+					box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.5);
+					content: '';
+					display: block;
+					height: 20px;
+					left: 0;
+					position: absolute;
+					top: 0;
+					transition: all 0.15s ease-in-out;
+					width: 20px;
+				}
+			}
+		}
+	}
+
+	.form-range {
+		height: 6px;
+		margin: 15px 0;
+		position: relative;
+		z-index: 1;
+	}
+
+	.question {
+		color: $green;
+		display: inline-block;
+		font-size: 16px;
+		line-height: 20px;
+		padding-left: 30px;
+		position: relative;
+
+		&:before {
+			background-position: center center;
+			background-repeat: no-repeat;
+			background-size: 20px auto;
+			content: '';
+			display: block;
+			height: 20px;
+			left: 0;
+			position: absolute;
+			top: 0;
+			width: 20px;
+		}
+
+		&.question-1 {
+			&:before {
+				background-image: url($q1_icon);
+			}
+		}
+		&.question-2 {
+			&:before {
+				background-image: url($q2_icon);
+			}
+		}
+		&.question-3 {
+			&:before {
+				background-image: url($q3_icon);
+			}
+		}
+		&.question-4 {
+			&:before {
+				background-image: url($q4_icon);
+			}
+		}
+	}
+
+	.table-wrap {
+		background: white;
+		border: 1px solid #e4e4e4;
+		border-radius: 5px;
+		overflow: hidden;
+
+		.table {
+			caption {
+				border-bottom: 1px solid #e4e4e4;
+				color: $green;
+				font-size: 15px;
+				font-weight: 500;
+				padding: 11px 22px;
+			}
+
+			> :not(caption) > * > * {
+				border-color: #e4e4e4;
+				padding: 12px;
+			}
+
+			thead {
+				th {
+					background: #f8fafc;
+					font-size: 12px;
+				}
+			}
+
+			tbody {
+				tr {
+					&.active {
+						td {
+							background: rgba(221, 230, 213, 0.24);
+						}
+					}
+				}
+			}
+
+			tfoot {
+				td {
+					background: #dde6d5;
+					color: $green;
+					font-size: 14px;
+					font-weight: 600;
+				}
+			}
+		}
+	}
+
+	output {
+		background: white;
+		border: 1px solid #dfe4df;
+		border-radius: 3px;
+		font-size: 17px;
+		line-height: 20px;
+		padding: 6px 12px;
+
+		span {
+			display: inline-block;
+			font-size: 10px;
+			line-height: 1;
+			margin-left: 5px;
+			vertical-align: middle;
+		}
+	}
+}
+
+.site-footer {
+	background: white;
+	border-top: 1px solid  rgba(165, 165, 165, 0.37);
+	padding: 20px 20px;
+
+	ul {
+		color: $green;
+		columns: 2;
+		font-size: 13px;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+
+		li {
+			background: url($tick) no-repeat left center;
+			background-repeat: no-repeat;
+			background-size: 12px auto;
+			margin-bottom: 5px;
+			padding-left: 15px;
+		}
+	}
+
+	h2 {
+		color: #333333;
+
+		span {
+			color: $green;
+			font-weight: 600;
+
+			&:not(.active) {
+				filter: blur(3px);
+			}
+		}
+	}
+}

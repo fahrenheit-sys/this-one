@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>ThisOne.ai</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+		<link rel="stylesheet" href="thisoneai_tool.css">
+	</head>
+	<body>
+		<header class="site-header">
+			<nav class="navbar">
+				<div class="container-xl">
+					<img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA3OTUuNzMgMjIzLjI4Ij4KICA8cGF0aCBkPSJNMTM2LjgxLDExOC42M2M1LjY4LDQuNSw5Ljc0LDkuNzQsOS4wNSwxNy40Mi0uMDQuNDcuMDksMS4wMy0uMTIsMS40LTIuNDcsNC40NS0uOTMsNy40OCwyLjUxLDEwLjk4LDQuNDIsNC41LDQuNDksMTAuNDgsMi4xOSwxNi4yNC01LjI1LDEzLjEtMjcuMzIsMzEuMDgtNDcuNjksMjQuMjctMS42Ni0uNTYtMi4zOC4yNi0zLjM5LDEuMDEtNy4zMiw1LjQ1LTE0Ljk4LDEwLjItMjQuMDUsMTIuMjYtMy4zOC43Ny02LjkuMi0xMC4xNS44MS0zLjExLjU4LTQuMDEsNC45MS03LjA5LDYuNC04LjAzLDMuODktMTYuMDUsNC4yNy0yNC4xLjE4LTIuOTYtMS41MS01LjY1LTMuNDYtNy45Mi01Ljg5LTEwLjc3LTExLjU3LTE3LjIxLTI1LjI5LTE5LjI0LTQwLjg5LTEuNDMtMTAuOTUsMi45LTE2LjU0LDEzLjY2LTE5LjA1LDEuNTItLjM1LDIuMS0uODksMi4xMS0yLjU0LjAyLTYuNTYsMi4wNC0xMi41Miw2LjA0LTE3Ljc0LjktMS4xOC45Ni0yLjEyLjQ3LTMuNTItMS4yNy0zLjU5LTMuNjItNi4zMS02LjM0LTguODEtNC4wOS0zLjc3LTguMDUtNy42NS0xMC45Ny0xMi40NS02LjY2LTEwLjkxLTMuNzUtMjAuMzQsNy43MS0yNS44OSw3LjY0LTMuNywxNC45OS0zLjQ0LDIyLjMxLjYxLDkuODMsNS40NCwxNi42NSwxMy40MSwxOS43NywyNC4yOC42NCwyLjIxLDEuNTMsMi43MywzLjU5LDEuOTgsMjYuNy05Ljc1LDUyLjYyLTIwLjgzLDcyLjQ4LTQyLjMsMy41OC0zLjg3LDcuNzMtNi45OSwxMi44OS04LjM2LDEyLjQ3LTMuMzIsMjMuMzMsNi4yOSwyMi41OSwxOS44Mi0uMzIsNS44Mi0yLjQxLDExLjAxLTUuNDIsMTUuODctNy43MiwxMi40Ny0xNy4yNywyMy4zLTI4Ljg4LDMyLjMtLjY1LjUtMS4yNiwxLjA0LTEuOTgsMS42MlpNMzAuOTIsMTMxLjY2Yy0yLjI3LDUuMjMtMi44Nyw5Ljg0LTEuNiwxNC43NiwzLjA0LDExLjc1LDkuMTUsMjAuODcsMjEuNTksMjQuMjksMi4xNC41OSwzLjQ3LDEuNjcsMi44NSw0LS42NiwyLjQ5LTIuNjEsMi4zMS00LjU3LDEuODEtLjQ1LS4xMi0uODgtLjMyLTEuMzMtLjQ0LTEyLjQ3LTMuNTEtMTkuMDYtMTIuNzYtMjMuMzEtMjQuMTUtLjgtMi4xNS0xLjctMi42MS0zLjgxLTIuMDktNi4zLDEuNTYtOS4wNyw1LjgtNy45MywxMi44MSwxLjksMTEuNzEsNi41LDIyLjM0LDEzLjQzLDMxLjkzLDMuMzUsNC42NCw3LjQyLDguNjcsMTIuOTksMTAuNTYsNi4xMSwyLjA3LDEyLjA3LDEuOCwxNy4zNy0yLjM5LDEuMzItMS4wNCwxLjctMS45LS4yOC0zLTQtMi4yMy02LjkxLTUuNjUtOS4yLTkuNi0uOTktMS43LS43OS0zLjIzLjg2LTQuMywxLjY5LTEuMSwzLjE0LS40OSw0LjI2LDEuMDUuMzUuNDguNjEsMS4wMS45NCwxLjQ5LDQuNjYsNi44MywxMC45Niw5LjYyLDE5LjIxLDguMTIsOC4zNS0xLjUzLDE1LjMyLTUuNzksMjIuMDktMTAuNTcsMS41NC0xLjA5LjgzLTEuNzQuMDctMi43NS0zLjI5LTQuMzMtNC44OS05LjI5LTMuOC0xNC42LjQ5LTIuMzgtLjMzLTMuMDUtMS45NS0zLjk5LTQuMDMtMi4zNC02Ljg3LTUuNzItOC4xOS0xMC4yMy0zLjA1LTEwLjQxLDQuODEtMjIuNDgsMTYuNDktMjUuMzYsMi42My0uNjUsNS4zMy0xLjAyLDcuOTItMS43NywyNi43OS03Ljc5LDQ1LjQzLTI1LjQ3LDU5LjIxLTQ4Ljk4LDEuNTYtMi42NywyLjQyLTUuNjcsMi42OC04LjcyLjQ0LTUuMi0uOC05LjkzLTUuMzMtMTMuMDktNC40My0zLjA4LTguOTQtMi4xMS0xMy4zNC4yNy0yLjUyLDEuMzYtNC42LDMuMjgtNi41OCw1LjMyLTUuMDIsNS4xNy05LjkyLDEwLjUyLTE1LjkzLDE0LjU2LTE4LjQzLDEyLjM5LTM4LjAzLDIyLjQ4LTU5LjMyLDI5LjAzLTIuNC43NC0zLjc5LDEuNC0zLjY0LDQuMzQuMTYsMi45Mi0uODEsNS44LTEuNzYsOC42LS42NiwxLjk1LTEuNjEsMy42OS0zLjk0LDMuMDgtMi41Mi0uNjctMi42Ni0yLjcyLTEuOTEtNC44Niw1Ljk4LTE3LjAyLTUuMTktMzEuNjMtMTUuNjUtMzcuNTktNi42MS0zLjc2LTEyLjk4LTMuNTMtMTkuMzkuMjUtNS43NCwzLjM4LTcuMTUsOC4wNi00LjE5LDE0LjEyLDIuMTYsNC40Miw1LjI5LDguMTksOS4wNCwxMS4yNCw3LjYzLDYuMjEsMTEuNDYsMTQuMTUsMTIuMTIsMjMuODQuMTQsMS45OS4zMiwzLjc4LTEuOCw0Ljg2LTIsMS4wMi0yLjk5LS41Mi00LjM2LTEuODFaTTEwMy4zNCwxNjIuNDFjMTQuNTgtLjkzLDI1LjQ1LTguMzYsMzMuNjYtMTkuOTMsNC44OC02Ljg5LDMuMzgtMTMuMjgtMy4zNy0xOC40Ni0xLjcyLTEuMzItMi45NS0xLjU5LTQuOTYtLjM1LTguODksNS40Ni0xOC41NSw5LjAyLTI4LjgxLDEwLjk3LTUuMTUuOTgtOS4wOCwzLjgxLTExLjgzLDguMTgtMy45Niw2LjI5LTIuMDksMTMuMjMsNC40MywxNi44OSwzLjM2LDEuODksNywyLjY3LDEwLjg5LDIuN1pNMTE0LjI4LDE4NC4zM2MxMi4xMi0xLjI4LDIyLjktOC41OSwzMC4wNC0yMS4xNiwyLjcxLTQuNzcsMS4zNC05LjU0LTIuNTctMTMuMDctMS4yNS0xLjEzLTEuOTEtMS4yMS0zLjAyLjItMi4yNiwyLjg4LTUuMDEsNS4zMi03LjksNy41OC04Ljc5LDYuODctMTguNTEsMTEuMTYtMjkuOTMsMTAuMzgtNC4zMy0uMy01LjA2LjQxLTQuMjIsNC44NCwxLjQyLDcuNSw2LjQzLDExLjIzLDE3LjU5LDExLjIzWiIgc3R5bGU9ImZpbGw6ICM2NjdiNjg7IGZpbGwtcnVsZTogZXZlbm9kZDsiLz4KICA8cGF0aCBkPSJNMzAuOTIsMTMxLjY2YzEuMzgsMS4yOCwyLjM3LDIuODIsNC4zNiwxLjgxLDIuMTItMS4wOCwxLjkzLTIuODcsMS44LTQuODYtLjY2LTkuNjktNC41LTE3LjYzLTEyLjEyLTIzLjg0LTMuNzUtMy4wNi02Ljg4LTYuODItOS4wNC0xMS4yNC0yLjk2LTYuMDYtMS41Ni0xMC43Myw0LjE5LTE0LjEyLDYuNDItMy43OCwxMi43OS00LjAyLDE5LjM5LS4yNSwxMC40NSw1Ljk2LDIxLjYyLDIwLjU3LDE1LjY1LDM3LjU5LS43NSwyLjE0LS42Miw0LjE5LDEuOTEsNC44NiwyLjMzLjYyLDMuMjgtMS4xMywzLjk0LTMuMDguOTUtMi44MSwxLjkyLTUuNjksMS43Ni04LjYtLjE2LTIuOTQsMS4yMy0zLjYsMy42NC00LjM0LDIxLjI5LTYuNTUsNDAuODktMTYuNjQsNTkuMzItMjkuMDMsNi4wMS00LjA0LDEwLjkxLTkuNCwxNS45My0xNC41NiwxLjk4LTIuMDQsNC4wNi0zLjk1LDYuNTgtNS4zMiw0LjQtMi4zOCw4LjkxLTMuMzUsMTMuMzQtLjI3LDQuNTQsMy4xNiw1Ljc4LDcuODksNS4zMywxMy4wOS0uMjYsMy4wNS0xLjExLDYuMDUtMi42OCw4LjcyLTEzLjc4LDIzLjUxLTMyLjQyLDQxLjE5LTU5LjIxLDQ4Ljk4LTIuNTkuNzUtNS4yOSwxLjEzLTcuOTIsMS43Ny0xMS42OCwyLjg3LTE5LjU0LDE0Ljk1LTE2LjQ5LDI1LjM2LDEuMzIsNC41MSw0LjE2LDcuODksOC4xOSwxMC4yMywxLjYzLjk1LDIuNDQsMS42MiwxLjk1LDMuOTktMS4wOSw1LjMxLjUxLDEwLjI3LDMuOCwxNC42Ljc3LDEuMDEsMS40OCwxLjY3LS4wNywyLjc1LTYuNzcsNC43OC0xMy43NCw5LjA1LTIyLjA5LDEwLjU3LTguMjUsMS41MS0xNC41NS0xLjI4LTE5LjIxLTguMTItLjMzLS40OS0uNi0xLjAyLS45NC0xLjQ5LTEuMTItMS41NC0yLjU3LTIuMTYtNC4yNi0xLjA1LTEuNjUsMS4wNy0xLjg1LDIuNi0uODYsNC4zLDIuMjksMy45NSw1LjIsNy4zNyw5LjIsOS42LDEuOTksMS4xMSwxLjYsMS45Ni4yOCwzLTUuMzEsNC4xOS0xMS4yNyw0LjQ3LTE3LjM3LDIuMzktNS41Ny0xLjg5LTkuNjQtNS45Mi0xMi45OS0xMC41Ni02LjkyLTkuNTktMTEuNTMtMjAuMjItMTMuNDMtMzEuOTMtMS4xNC03LjAxLDEuNjMtMTEuMjUsNy45My0xMi44MSwyLjEyLS41MiwzLjAxLS4wNiwzLjgxLDIuMDksNC4yNSwxMS4zOSwxMC44NCwyMC42NCwyMy4zMSwyNC4xNS40NS4xMy44OC4zMywxLjMzLjQ0LDEuOTYuNSwzLjkuNjgsNC41Ny0xLjgxLjYyLTIuMzItLjcxLTMuNDEtMi44NS00LTEyLjQ0LTMuNDEtMTguNTUtMTIuNTMtMjEuNTktMjQuMjktMS4yNy00LjkyLS42Ny05LjUyLDEuNi0xNC43NloiIHN0eWxlPSJmaWxsOiBub25lOyBmaWxsLXJ1bGU6IGV2ZW5vZGQ7Ii8+CiAgPHBhdGggZD0iTTEwMy4zNCwxNjIuNDFjLTMuODktLjAyLTcuNTItLjgxLTEwLjg5LTIuNy02LjUyLTMuNjYtOC4zOS0xMC42LTQuNDMtMTYuODksMi43NS00LjM3LDYuNjgtNy4yLDExLjgzLTguMTgsMTAuMjUtMS45NSwxOS45Mi01LjUxLDI4LjgxLTEwLjk3LDIuMDEtMS4yMywzLjI1LS45Niw0Ljk2LjM1LDYuNzUsNS4xOCw4LjI2LDExLjU3LDMuMzcsMTguNDYtOC4yLDExLjU3LTE5LjA4LDE4Ljk5LTMzLjY2LDE5LjkzWiIgc3R5bGU9ImZpbGw6IG5vbmU7IGZpbGwtcnVsZTogZXZlbm9kZDsiLz4KICA8cGF0aCBkPSJNMTE0LjI4LDE4NC4zM2MtMTEuMTYsMC0xNi4xNy0zLjczLTE3LjU5LTExLjIzLS44NC00LjQzLS4xMS01LjEzLDQuMjItNC44NCwxMS40Mi43OCwyMS4xNC0zLjUyLDI5LjkzLTEwLjM4LDIuODktMi4yNiw1LjY0LTQuNjksNy45LTcuNTgsMS4xMS0xLjQxLDEuNzctMS4zMiwzLjAyLS4yLDMuOTEsMy41Miw1LjI4LDguMywyLjU3LDEzLjA3LTcuMTQsMTIuNTctMTcuOTIsMTkuODktMzAuMDQsMjEuMTZaIiBzdHlsZT0iZmlsbDogbm9uZTsgZmlsbC1ydWxlOiBldmVub2RkOyIvPgogIDxwb2x5Z29uIHBvaW50cz0iMjE3Ljc0IDI4LjAzIDE5My45MSA0Mi4zMiAyMDkuMTYgMTkuMSAyMTcuNzQgMjguMDMiIHN0eWxlPSJmaWxsOiAjYTNiOTlhOyBmaWxsLXJ1bGU6IGV2ZW5vZGQ7Ii8+CiAgPHBvbHlnb24gcG9pbnRzPSIxOTcuODcgMTMuODcgMTg1LjcgMzkuMjEgMTgzLjAyIDExLjIzIDE5Ny44NyAxMy44NyIgc3R5bGU9ImZpbGw6ICNhM2I5OWE7IGZpbGwtcnVsZTogZXZlbm9kZDsiLz4KICA8cG9seWdvbiBwb2ludHM9IjIyMS41MSA1NC40NyAxOTQuODEgNDguMDkgMjIxLjUxIDQxLjcxIDIyMS41MSA1NC40NyIgc3R5bGU9ImZpbGw6ICNhM2I5OWE7IGZpbGwtcnVsZTogZXZlbm9kZDsiLz4KICA8Zz4KICAgIDxwYXRoIGQ9Ik0yMzkuNywxMDUuMTZoLTIzLjAxdi0xNC4wNGg2MS4xMnYxNC4wNGgtMjMuMDF2NjMuMTNoLTE1LjF2LTYzLjEzWiIgc3R5bGU9ImZpbGw6ICM2NjdiNjg7Ii8+CiAgICA8cGF0aCBkPSJNMjg4LjY3LDg0LjUxaDE0LjA0djMzLjYzYzMuODktNi4yNSw5LjkxLTkuNjgsMTcuMzUtOS42OCwxMy40NSwwLDI2LjIsOC43MywyNi4yLDI5LjV2MzAuMzNoLTE0LjA0di0zMC4zM2MwLTExLjA5LTUuOS0xNi40LTE0Ljc1LTE2LjRzLTE0Ljc1LDUuNTUtMTQuNzUsMTYuNHYzMC4zM2gtMTQuMDR2LTgzLjc4WiIgc3R5bGU9ImZpbGw6ICM2NjdiNjg7Ii8+CiAgICA8cGF0aCBkPSJNMzU3LjU4LDkzLjEyYzAtNS40MywzLjg5LTkuNDQsOS4zMi05LjQ0czkuMzIsNC4wMSw5LjMyLDkuNDQtMy44OSw5LjMyLTkuMzIsOS4zMi05LjMyLTMuODktOS4zMi05LjMyWk0zNTkuODIsMTEwaDE0LjA0djU4LjI5aC0xNC4wNHYtNTguMjlaIiBzdHlsZT0iZmlsbDogIzY2N2I2ODsiLz4KICAgIDxwYXRoIGQ9Ik0zODUuMTksMTUxLjA2aDE0LjE2Yy4xMiwzLjg5LDMuNTQsNi40OSwxMC4zOCw2LjQ5LDcuMiwwLDEwLjI3LTIuOTUsMTAuMjctNi40OSwwLTQuNDgtNS4xOS01LjA3LTExLjQ1LTUuOS04Ljk3LTEuMTgtMjIuMTgtMi43MS0yMi4xOC0xNi45OSwwLTExLjkyLDkuMDktMTkuNzEsMjMuMTMtMTkuNzFzMjMuMDEsOC4wMiwyMy4zNiwxOC4yOWgtMTMuOTJjLS4zNS0zLjU0LTMuNjYtNi4wMi05LjItNi4wMi02LjE0LDAtOS4yLDIuOTUtOS4yLDYuMzcsMCw0LjQ4LDUuMzEsNS4xOSwxMS41Niw2LjAyLDcuNzksMS4wNiwyMi4wNywyLjYsMjIuMDcsMTcuMTEsMCwxMS44LTkuNTYsMTkuNTktMjQuNDMsMTkuNTlzLTI0LjE5LTcuOTEtMjQuNTQtMTguNzZaIiBzdHlsZT0iZmlsbDogIzY2N2I2ODsiLz4KICAgIDxwYXRoIGQ9Ik00NDEuNzEsMTI5LjdjMC0yMy4xMywxNi45OS00MC4xMiw0MS4wNi00MC4xMnM0MS4wNiwxNi45OSw0MS4wNiw0MC4xMi0xNi45OSw0MC4xMi00MS4wNiw0MC4xMi00MS4wNi0xNi45OS00MS4wNi00MC4xMlpNNTA4LjUsMTI5LjdjMC0xNS4xLTEwLjM4LTI2LjA4LTI1LjcyLTI2LjA4cy0yNS43MiwxMC45Ny0yNS43MiwyNi4wOCwxMC4zOCwyNi4yLDI1LjcyLDI2LjIsMjUuNzItMTEuMDksMjUuNzItMjYuMloiIHN0eWxlPSJmaWxsOiAjNjY3YjY4OyIvPgogICAgPHBhdGggZD0iTTUzMy42NCwxMzcuOTZjMC0xOS40NywxMS41Ni0yOS41LDI4Ljc5LTI5LjVzMjguNzksOS45MSwyOC43OSwyOS41djMwLjMzaC0xNC4wNHYtMzAuMzNjMC0xMS4wOS01LjktMTYuNC0xNC43NS0xNi40cy0xNC43NSw1LjMxLTE0Ljc1LDE2LjR2MzAuMzNoLTE0LjA0di0zMC4zM1oiIHN0eWxlPSJmaWxsOiAjNjY3YjY4OyIvPgogICAgPHBhdGggZD0iTTYwMC40MiwxMzkuMTRjMC0xNy43LDEyLjk4LTMwLjY4LDMxLjM5LTMwLjY4czMxLjE1LDEyLjk4LDMxLjE1LDMwLjY4djQuOTZoLTQ3Ljc5YzEuODksOC41LDguMzgsMTIuOTgsMTYuNjQsMTIuOTgsNi4yNSwwLDEwLjg2LTEuNzcsMTMuODEtNS41NWgxNC45OWMtNC4zNywxMS4wOS0xNC45OSwxOC4yOS0yOC43OSwxOC4yOS0xOC40MSwwLTMxLjM5LTEyLjk4LTMxLjM5LTMwLjY4Wk02NDguMDksMTMyLjg5Yy0yLjI0LTcuNzktOC42MS0xMS42OC0xNi4yOC0xMS42OHMtMTQuMDQsNC4wMS0xNi4yOCwxMS42OGgzMi41N1oiIHN0eWxlPSJmaWxsOiAjNjY3YjY4OyIvPgogICAgPHBhdGggZD0iTTY3MC40LDE2MC41YzAtNS4zMSw0LjAxLTkuMzIsOS4zMi05LjMyczkuMzIsNC4wMSw5LjMyLDkuMzItNC4wMSw5LjMyLTkuMzIsOS4zMi05LjMyLTQuMDEtOS4zMi05LjMyWiIgc3R5bGU9ImZpbGw6ICM2NjdiNjg7Ii8+CiAgICA8cGF0aCBkPSJNNjk2LjQ3LDEzOS43M2MwLTE4LjUzLDEyLjk4LTMxLjI3LDMxLjUtMzEuMjdzMzEuMDMsMTIuMzksMzEuMDMsMzEuMTV2MjguNjdoLTEyLjg2di0xMS40NWMtMy41NCw4LjYxLTExLjQ1LDEyLjk4LTIwLjY1LDEyLjk4LTE0LjE2LDAtMjkuMDMtMTAuMTUtMjkuMDMtMzAuMDlaTTc0NC45NywxMzkuMTRjMC0xMC4yNy02Ljg0LTE3LjU4LTE3LjExLTE3LjU4cy0xNy4yMyw3LjMyLTE3LjIzLDE3LjU4LDYuOTYsMTcuNTgsMTcuMjMsMTcuNTgsMTcuMTEtNy4zMiwxNy4xMS0xNy41OFoiIHN0eWxlPSJmaWxsOiAjNjY3YjY4OyIvPgogICAgPHBhdGggZD0iTTc3MC4zNCw5My4xMmMwLTUuNDMsMy44OS05LjQ0LDkuMzItOS40NHM5LjMyLDQuMDEsOS4zMiw5LjQ0LTMuODksOS4zMi05LjMyLDkuMzItOS4zMi0zLjg5LTkuMzItOS4zMlpNNzcyLjU4LDExMGgxNC4wNHY1OC4yOWgtMTQuMDR2LTU4LjI5WiIgc3R5bGU9ImZpbGw6ICM2NjdiNjg7Ii8+CiAgPC9nPgo8L3N2Zz4=" alt="ThisOne.ai" width="158" height="46">
+				</div>
+			</nav>
+		</header>
+
+		<div class="container-xl">
+			<main class="main-content">
+				<h1>Profit Optimisation Tool</h1>
+
+				<form>
+					<div class="row g-5">
+						<div class="col-12">
+							<div class="input-group">
+								<div class="row g-3">
+									<div class="col-10">
+										<h2>Select your distributors</h2>
+									</div>
+									<div class="col-2 text-end align-content-center">
+										<span class="question question-1">1/4</span>
+									</div>
+
+									<div class="col-4">
+										<div class="table-wrap">
+											<table class="table caption-top m-0">
+												<caption>USA</caption>
+												<thead>
+													<tr>
+														<th><input class="form-check-input" id="company-all-1" type="checkbox" name="company-all-1" value="all"></th>
+														<th>Company Name</th>
+														<th class="text-end">Locations</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td><input class="form-check-input company-all-1" type="checkbox" name="company[]" value="9000" id="company-1"></td>
+														<td><label class="form-check-label d-block" for="company-1">CVS</label></td>
+														<td class="text-end"><label class="form-check-label d-block" for="company-1">9,000</label></td>
+													</tr>
+													<tr>
+														<td><input class="form-check-input company-all-1" type="checkbox" name="company[]" value="8500" id="company-2"></td>
+														<td><label class="form-check-label d-block" for="company-2">Walgreens/Boots</label></td>
+														<td class="text-end"><label class="form-check-label d-block" for="company-2">8,500</label></td>
+													</tr>
+													<tr>
+														<td><input class="form-check-input company-all-1" type="checkbox" name="company[]" value="4600" id="company-3"></td>
+														<td><label class="form-check-label d-block" for="company-3">Walmart Pharmacy</label></td>
+														<td class="text-end"><label class="form-check-label d-block" for="company-3">4,600</label></td>
+													</tr>
+													<tr>
+														<td><input class="form-check-input company-all-1" type="checkbox" name="company[]" value="2200" id="company-4"></td>
+														<td><label class="form-check-label d-block" for="company-4">Kroger Health</label></td>
+														<td class="text-end"><label class="form-check-label d-block" for="company-4">2,200</label></td>
+													</tr>
+													<tr>
+														<td><input class="form-check-input company-all-1" type="checkbox" name="company[]" value="1500" id="company-5"></td>
+														<td><label class="form-check-label d-block" for="company-5">Rite Aid</label></td>
+														<td class="text-end"><label class="form-check-label d-block" for="company-5">1,500</label></td>
+													</tr>
+												</tbody>
+												<tfoot>
+													<tr>
+														<td colspan="3" class="border-bottom-0 text-end" id="company-group-1">&nbsp;</td>
+													</tr>
+												</tfoot>
+											</table>
+										</div>
+									</div>
+
+									<div class="col-4">
+										<div class="table-wrap">
+											<table class="table caption-top m-0">
+												<caption>United Kingdom</caption>
+												<thead>
+													<tr>
+														<th><input class="form-check-input" id="company-all-2" type="checkbox" name="company-all-2" value="all"></th>
+														<th>Company Name</th>
+														<th class="text-end">Locations</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td><input class="form-check-input company-all-2" type="checkbox" name="company[]" value="1800" id="company-6"></td>
+														<td><label class="form-check-label d-block" for="company-6">Boots</label></td>
+														<td class="text-end"><label class="form-check-label d-block" for="company-6">1,800</label></td>
+													</tr>
+													<tr>
+														<td><input class="form-check-input company-all-2" type="checkbox" name="company[]" value="800" id="company-7"></td>
+														<td><label class="form-check-label d-block" for="company-7">Superdrug</label></td>
+														<td class="text-end"><label class="form-check-label d-block" for="company-7">800</label></td>
+													</tr>
+													<tr>
+														<td><input class="form-check-input company-all-2" type="checkbox" name="company[]" value="750" id="company-8"></td>
+														<td><label class="form-check-label d-block" for="company-8">Well Pharmacy</label></td>
+														<td class="text-end"><label class="form-check-label d-block" for="company-8">750</label></td>
+													</tr>
+													<tr>
+														<td><input class="form-check-input company-all-2" type="checkbox" name="company[]" value="400" id="company-9"></td>
+														<td><label class="form-check-label d-block" for="company-9">Rowland</label></td>
+														<td class="text-end"><label class="form-check-label d-block" for="company-9">400</label></td>
+													</tr>
+													<tr>
+														<td><input class="form-check-input company-all-2" type="checkbox" name="company[]" value="250" id="company-10"></td>
+														<td><label class="form-check-label d-block" for="company-10">Day Lewis</label></td>
+														<td class="text-end"><label class="form-check-label d-block" for="company-10">250</label></td>
+													</tr>
+												</tbody>
+												<tfoot>
+													<tr>
+														<td colspan="3" class="border-bottom-0 text-end" id="company-group-2">&nbsp;</td>
+													</tr>
+												</tfoot>
+											</table>
+										</div>
+									</div>
+
+									<div class="col-4">
+										<div class="table-wrap">
+											<table class="table caption-top m-0">
+												<caption>Australia</caption>
+												<thead>
+													<tr>
+														<th><input class="form-check-input" id="company-all-3" type="checkbox" name="company-all-3" value="all"></th>
+														<th>Company Name</th>
+														<th class="text-end">Locations</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td><input class="form-check-input company-all-3" type="checkbox" name="company[]" value="879" id="company-11"></td>
+														<td><label class="form-check-label d-block" for="company-11">Chemist Warehouse/Amcal</label></td>
+														<td class="text-end"><label class="form-check-label d-block" for="company-11">879</label></td>
+													</tr>
+													<tr>
+														<td><input class="form-check-input company-all-3" type="checkbox" name="company[]" value="596" id="company-12"></td>
+														<td><label class="form-check-label d-block" for="company-12">Terry White</label></td>
+														<td class="text-end"><label class="form-check-label d-block" for="company-12">596</label></td>
+													</tr>
+													<tr>
+														<td><input class="form-check-input company-all-3" type="checkbox" name="company[]" value="496" id="company-13"></td>
+														<td><label class="form-check-label d-block" for="company-13">Priceline</label></td>
+														<td class="text-end"><label class="form-check-label d-block" for="company-13">496</label></td>
+													</tr>
+													<tr>
+														<td colspan="3">&nbsp;</td>
+													</tr>
+													<tr>
+														<td colspan="3">&nbsp;</td>
+													</tr>
+												</tbody>
+												<tfoot>
+													<tr>
+														<td colspan="3" class="border-bottom-0 text-end" id="company-group-3">&nbsp;</td>
+													</tr>
+												</tfoot>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-6">
+							<div class="input-group">
+								<div class="row g-2">
+									<div class="col-10">
+										<h2>Choose your product categories</h2>
+									</div>
+									<div class="col-2 text-end align-content-center">
+										<span class="question question-2">2/4</span>
+									</div>
+
+									<div class="col-12">
+										<div class="row g-4">
+											<div class="col-8">
+												<div class="form-check toggle">
+													<input class="form-check-input" type="checkbox" name="category" value="vitamins" id="category-vitamins">
+													<label class="form-check-label" for="category-vitamins">Vitamins & Supplements</label>
+												</div>
+											</div>
+
+											<div class="col-4 text-end">
+												<output for="vitamins-range" id="vitamins-range-value" aria-hidden="true"></output>
+											</div>
+										</div>
+										
+										<input type="range" class="form-range" min="0" max="3000" step="100" value="1500" id="vitamins-range">
+										<div class="row g-1">
+											<div class="col">0</div>
+											<div class="col"></div>
+											<div class="col">500</div>
+											<div class="col"></div>
+											<div class="col">1000</div>
+											<div class="col"></div>
+											<div class="col text-center">1500</div>
+											<div class="col"></div>
+											<div class="col text-end">2000</div>
+											<div class="col"></div>
+											<div class="col text-end">2500</div>
+											<div class="col"></div>
+											<div class="col text-end">3000</div>
+										</div>
+
+										<hr>
+									</div>
+
+									<div class="col-12">
+										<div class="row g-4">
+											<div class="col-8">
+												<div class="form-check toggle">
+													<input class="form-check-input" type="checkbox" name="category" value="vitamins" id="category-skincare">
+													<label class="form-check-label" for="category-skincare">Skincare</label>
+												</div>
+											</div>
+
+											<div class="col-4 text-end">
+												<output for="skincare-range" id="skincare-range-value" aria-hidden="true"></output>
+											</div>
+										</div>
+										
+										<input type="range" class="form-range" min="0" max="3000" step="100" value="1500" id="skincare-range">
+										<div class="row g-1">
+											<div class="col">0</div>
+											<div class="col"></div>
+											<div class="col">500</div>
+											<div class="col"></div>
+											<div class="col">1000</div>
+											<div class="col"></div>
+											<div class="col text-center">1500</div>
+											<div class="col"></div>
+											<div class="col text-end">2000</div>
+											<div class="col"></div>
+											<div class="col text-end">2500</div>
+											<div class="col"></div>
+											<div class="col text-end">3000</div>
+										</div>
+
+										<hr>
+									</div>
+
+									<div class="col-12">
+										<div class="row g-4">
+											<div class="col-8">
+												<div class="form-check toggle">
+													<input class="form-check-input" type="checkbox" name="category" value="vitamins" id="category-fragrances">
+													<label class="form-check-label" for="category-fragrances">Fragrances</label>
+												</div>
+											</div>
+
+											<div class="col-4 text-end">
+												<output for="fragrances-range" id="fragrances-range-value" aria-hidden="true"></output>
+											</div>
+										</div>
+										
+										<input type="range" class="form-range" min="0" max="3000" step="100" value="1500" id="fragrances-range">
+										<div class="row g-1">
+											<div class="col">0</div>
+											<div class="col"></div>
+											<div class="col">500</div>
+											<div class="col"></div>
+											<div class="col">1000</div>
+											<div class="col"></div>
+											<div class="col text-center">1500</div>
+											<div class="col"></div>
+											<div class="col text-end">2000</div>
+											<div class="col"></div>
+											<div class="col text-end">2500</div>
+											<div class="col"></div>
+											<div class="col text-end">3000</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-6">
+							<div class="row g-5">
+								<div class="col-12">
+									<div class="input-group">
+										<div class="row g-5">
+											<div class="col-10">
+												<h2>Set your Sku/Day/Cost</h2>
+											</div>
+											<div class="col-2 text-end align-content-center">
+												<span class="question question-3">3/4</span>
+											</div>
+
+											<div class="col-12 d-flex flex-column">
+												<output for="cost-range" id="cost-range-value" class="align-self-center mb-1" aria-hidden="true"></output>
+												<input type="range" class="form-range" min="0" max="1" step="0.1" value="0.5" id="cost-range">
+												<div class="row g-1">
+													<div class="col">$0.00</div>
+													<div class="col"></div>
+													<div class="col">$0.25</div>
+													<div class="col"></div>
+													<div class="col text-center">$0.50</div>
+													<div class="col"></div>
+													<div class="col text-end">$0.75</div>
+													<div class="col"></div>
+													<div class="col text-end">$1.00</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-12">
+									<div class="input-group">
+										<div class="row g-5">
+											<div class="col-10">
+												<h2>Uptake</h2>
+											</div>
+											<div class="col-2 text-end align-content-center">
+												<span class="question question-4">4/4</span>
+											</div>
+
+											<div class="col-12 d-flex flex-column">
+												<output for="uptake-range" id="uptake-range-value" class="align-self-center mb-1" aria-hidden="true"></output>
+												<input type="range" class="form-range" min="0" max="100" step="1" value="50" id="uptake-range">
+												<div class="row g-1">
+													<div class="col">0%</div>
+													<div class="col">10%</div>
+													<div class="col">20%</div>
+													<div class="col">30%</div>
+													<div class="col">40%</div>
+													<div class="col text-center">50%</div>
+													<div class="col text-end">60%</div>
+													<div class="col text-end">70%</div>
+													<div class="col text-end">80%</div>
+													<div class="col text-end">90%</div>
+													<div class="col text-end">100%</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			</main>
+		</div>
+
+		<footer class="site-footer fixed-bottom">
+			<div class="container-xl">
+				<div class="row">
+					<div class="col-5">
+						<ul>
+							<li>Higher Avg Margins</li>
+							<li>Higher Avg Product Prices</li>
+							<li>Higher Cart Completions</li>
+							<li>Lower Staff Training Costs</li>
+						</ul>
+					</div>
+
+					<div class="col-7 text-end">
+						<h2>New Revenue <span id="new-revenue"></span></h2>
+					</div>
+				</div>
+			</div>
+		</footer>
+
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.min.js" integrity="sha384-7qAoOXltbVP82dhxHAUje59V5r2YsVfBafyUDxEdApLPmcdhBPg1DKg1ERo0BZlK" crossorigin="anonymous"></script>
+		<script src="thisoneai_tool.js"></script>
+	</body>
+</html>
