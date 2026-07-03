@@ -10,12 +10,12 @@ const stats = [
 
 const features = [
   {
-    title: "AI-Powered Wine Matching Engine",
-    body: "Proprietary algorithms combine customer preferences with wine data to deliver instant recommendations across digital and physical retail.",
+    title: "AI-Powered Product Matching Engine",
+    body: "Proprietary algorithms combine customer preferences with product data to deliver instant recommendations across digital and physical retail.",
   },
   {
-    title: "3-Question Predictive Taste Model",
-    body: "A minimal interface determines a shopper's taste profile in under 30 seconds to boost engagement and conversions.",
+    title: "3-Question Needs Assessment",
+    body: "A minimal interface determines a shopper's needs and preferences in under 30 seconds to boost engagement and conversions.",
   },
   {
     title: "Zero Hardware Integration",
@@ -23,7 +23,7 @@ const features = [
   },
   {
     title: "Retail Media Monetization Layer",
-    body: "Suppliers and wineries can pay for featured product placements within recommendations.",
+    body: "Supplement, skincare, and fragrance brands can pay for featured product placements within recommendations.",
   },
   {
     title: "Real-Time Analytics Dashboard",
@@ -41,8 +41,8 @@ export default function OurTechnology() {
       <section className="border-b border-black/5 bg-surface py-20">
         <Container>
           <h1 className="max-w-3xl text-3xl font-bold text-brand-dark sm:text-4xl">
-            WineQ.ai isn&rsquo;t just another filter system — it&rsquo;s an advanced AI sommelier
-            powered by proprietary algorithms and deep wine knowledge.
+            ThisOne.ai isn&rsquo;t just another filter system — it&rsquo;s an advanced AI wellness
+            advisor powered by proprietary algorithms and deep product knowledge.
           </h1>
           <div className="mt-8 flex flex-wrap gap-4">
             <CtaLink href="/contact-us">Start your free trial</CtaLink>

@@ -23,10 +23,11 @@ export default function Footer() {
       <div className="mx-auto grid max-w-6xl gap-10 px-6 py-12 sm:grid-cols-3">
         <div>
           <p className="text-lg font-bold text-brand-dark">
-            WineQ<span className="text-brand">.ai</span>
+            ThisOne<span className="text-brand">.ai</span>
           </p>
           <p className="mt-2 max-w-xs text-sm text-muted">
-            AI sommelier recommendations that turn wine aisle confusion into confident purchases.
+            AI wellness advisor recommendations that turn pharmacy aisle overwhelm into confident
+            purchases.
           </p>
         </div>
 
@@ -71,7 +72,7 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-black/5 px-6 py-6 text-center text-xs text-muted">
-        © {new Date().getFullYear()} WineQ Pty Ltd. All rights reserved.
+        © {new Date().getFullYear()} ThisOne.ai. All rights reserved.
       </div>
     </footer>
   );

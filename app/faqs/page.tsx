@@ -2,16 +2,16 @@ import Container from "@/components/Container";
 
 const faqs = [
   {
-    q: "Why should I use WineQ?",
-    a: "WineQ helps convert wine aisle confusion into confident purchases by providing personalized recommendations that boost sales, improve customer experience, and drive loyalty with minimal setup required.",
+    q: "Why should I use ThisOne.ai?",
+    a: "ThisOne.ai helps convert pharmacy aisle overwhelm into confident purchases by providing personalized product recommendations that boost sales, improve customer experience, and drive loyalty with minimal setup required.",
   },
   {
-    q: "What is the difference between WineQ and other chat bots?",
-    a: "Unlike generic chatbots, WineQ.ai is specifically designed for wine retail. It combines sommelier expertise with AI to deliver personalized recommendations quickly in both online and in-store environments, functioning as a sales conversion tool rather than a support bot.",
+    q: "What is the difference between ThisOne.ai and other chat bots?",
+    a: "Unlike generic chatbots, ThisOne.ai is specifically designed for pharmacy and wellness retail. It combines product expertise with AI to deliver personalized recommendations quickly in both online and in-store environments, functioning as a sales conversion tool rather than a support bot.",
   },
   {
     q: "How much does it cost?",
-    a: "WineQ operates on a retail media model where wineries and distributors pay to be included in the sponsored match pool. Retailers can use it at no cost, with optional upgrades and performance-based pricing models available.",
+    a: "ThisOne.ai operates on a retail media model where supplement, skincare, and fragrance brands pay to be included in the sponsored match pool. Retailers can use it at no cost, with optional upgrades and performance-based pricing models available.",
   },
   {
     q: "How do I set it up?",
@@ -23,15 +23,15 @@ const faqs = [
   },
   {
     q: "What kind of questions does the chatbot ask?",
-    a: "Shoppers answer three straightforward questions about taste preferences, occasion, or food pairings, after which the AI suggests matching wines.",
+    a: "Shoppers answer three straightforward questions about their needs, concerns, or preferences — such as skin type, wellness goals, or scent preference — after which the AI suggests matching products.",
   },
   {
-    q: "Is it suitable for small retailers or boutique wineries?",
+    q: "Is it suitable for small retailers or independent pharmacies?",
     a: "Yes — the platform makes advanced AI tools accessible to smaller operators without the typical high costs or complexity barriers.",
   },
   {
-    q: "Is WineQ compliant with privacy regulations?",
-    a: "WineQ is fully compliant with Australian privacy laws and data protection regulations. No personally identifiable information is collected during recommendations.",
+    q: "Is ThisOne.ai compliant with privacy regulations?",
+    a: "ThisOne.ai is fully compliant with Australian privacy laws and data protection regulations. No personally identifiable information is collected during recommendations. ThisOne.ai matches shoppers to products based on stated preferences — it doesn't provide medical or clinical advice.",
   },
 ];
 

@@ -10,9 +10,9 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "WineQ.ai — AI Sommelier for Wine Retail",
+  title: "ThisOne.ai — AI Wellness Advisor for Pharmacy Retail",
   description:
-    "WineQ.ai is an AI sommelier that turns wine aisle confusion into confident purchases, boosting sales and loyalty for retailers, distributors, and wineries.",
+    "ThisOne.ai is an AI wellness advisor that turns pharmacy aisle overwhelm into confident purchases, boosting sales and loyalty for retailers, brands, and shoppers.",
 };
 
 export default function RootLayout({

@@ -6,7 +6,7 @@ import BenefitTabs from "@/components/BenefitTabs";
 const benefits = [
   {
     title: "Personalization",
-    body: "Every recommendation is tailored to the shopper's taste, occasion, or food pairing — not a generic bestseller list.",
+    body: "Every recommendation is tailored to the shopper's needs, concerns, or preferences — not a generic bestseller list.",
   },
   {
     title: "Plug-and-Play Setup",
@@ -14,7 +14,7 @@ const benefits = [
   },
   {
     title: "Cost-Effective",
-    body: "Retailers use WineQ.ai at no cost — the platform runs on a retail media model funded by participating wineries and distributors.",
+    body: "Retailers use ThisOne.ai at no cost — the platform runs on a retail media model funded by participating brands and suppliers.",
   },
 ];
 
@@ -25,11 +25,12 @@ export default function Home() {
         <Container className="grid gap-10 py-20 sm:grid-cols-2 sm:items-center sm:py-28">
           <div>
             <h1 className="text-4xl font-bold tracking-tight text-brand-dark sm:text-5xl">
-              Win-Win-Wine
+              Win-Win-Wellness
             </h1>
             <p className="mt-6 max-w-md text-lg text-muted">
-              WineQ.ai is an AI sommelier that turns wine aisle confusion into confident
-              purchases — boosting sales and loyalty for retailers, distributors, and wineries.
+              ThisOne.ai is an AI wellness advisor that turns pharmacy aisle overwhelm into
+              confident purchases — boosting sales and loyalty for retailers, brands, and
+              shoppers.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <CtaLink href="/contact-us">Book a demo</CtaLink>
@@ -37,7 +38,7 @@ export default function Home() {
                 For Retailers
               </CtaLink>
               <CtaLink href="/case-study" variant="secondary">
-                For Suppliers
+                For Brands
               </CtaLink>
             </div>
           </div>
@@ -47,10 +48,12 @@ export default function Home() {
       <section className="py-20">
         <Container className="grid gap-10 sm:grid-cols-2 sm:items-center">
           <div>
-            <h2 className="text-3xl font-bold text-brand-dark">Meet your 24/7 AI sommelier</h2>
+            <h2 className="text-3xl font-bold text-brand-dark">
+              Meet your 24/7 AI wellness advisor
+            </h2>
             <p className="mt-4 text-muted">
-              Retailers using WineQ.ai have seen up to 25% revenue growth and 30% higher cart
-              completion rates by putting a knowledgeable sommelier in every customer&rsquo;s
+              Retailers using ThisOne.ai have seen up to 25% revenue growth and 30% higher cart
+              completion rates by putting a knowledgeable product advisor in every customer&rsquo;s
               pocket — day or night.
             </p>
             <div className="mt-6">
@@ -58,7 +61,7 @@ export default function Home() {
             </div>
           </div>
           <div className="rounded-2xl border border-black/5 bg-white p-6">
-            <p className="text-sm font-semibold text-muted">Try the AI sommelier</p>
+            <p className="text-sm font-semibold text-muted">Try the AI wellness advisor</p>
             <ChatWidget />
           </div>
         </Container>
@@ -67,7 +70,7 @@ export default function Home() {
       <section className="border-y border-black/5 bg-surface py-20">
         <Container>
           <h2 className="text-center text-3xl font-bold text-brand-dark">
-            Why retailers choose WineQ.ai
+            Why retailers choose ThisOne.ai
           </h2>
           <div className="mt-12 grid gap-8 sm:grid-cols-3">
             {benefits.map((b) => (
@@ -83,7 +86,7 @@ export default function Home() {
       <section className="py-20">
         <Container>
           <h2 className="text-center text-3xl font-bold text-brand-dark">
-            Built for every part of the wine journey
+            Built for every part of the wellness journey
           </h2>
           <div className="mt-12">
             <BenefitTabs />

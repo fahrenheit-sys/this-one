@@ -4,8 +4,8 @@ import { useState, type FormEvent } from "react";
 
 const reasons = [
   "I'm a retailer",
-  "I'm a distributor or winery",
-  "I'm curious about WineQ",
+  "I'm a brand or supplier",
+  "I'm curious about ThisOne.ai",
   "Something else",
 ];
 

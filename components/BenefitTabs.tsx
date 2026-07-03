@@ -7,19 +7,19 @@ const tabs = [
   {
     label: "Retailers",
     heading: "Turn browsers into confident buyers",
-    body: "Give shoppers a 3-question guided experience that matches them to the right bottle in under 30 seconds — in-store via QR code or online via chatbot, with no POS or hardware changes required.",
+    body: "Give shoppers a 3-question guided experience that matches them to the right vitamin, skincare, or fragrance product in under 30 seconds — in-store via QR code or online via chatbot, with no POS or hardware changes required.",
     cta: { href: "/case-study", label: "See in action" },
   },
   {
-    label: "Distributors",
-    heading: "Get your wines in front of the right shopper",
-    body: "The retail media layer lets suppliers and wineries pay to be featured in relevant recommendations, reaching shoppers at the exact moment they're deciding what to buy.",
+    label: "Brands",
+    heading: "Get your products in front of the right shopper",
+    body: "The retail media layer lets supplement, skincare, and fragrance brands pay to be featured in relevant recommendations, reaching shoppers at the exact moment they're deciding what to buy.",
     cta: { href: "/contact-us", label: "Book a demo" },
   },
   {
-    label: "Wine Lovers",
-    heading: "Skip the aisle confusion",
-    body: "Answer a few quick questions about taste, occasion, or food pairing, and get a personalized recommendation from an AI sommelier — no expertise required.",
+    label: "Shoppers",
+    heading: "Skip the aisle overwhelm",
+    body: "Answer a few quick questions about your needs, concerns, or preferences, and get a personalized product recommendation from an AI wellness advisor — no expertise required.",
     cta: { href: "/our-technology", label: "Begin your free trial" },
   },
 ];

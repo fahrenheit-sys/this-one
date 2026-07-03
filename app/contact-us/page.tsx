@@ -8,9 +8,9 @@ export default function ContactUs() {
         <div>
           <h1 className="text-3xl font-bold text-brand-dark sm:text-4xl">Contact Us</h1>
           <p className="mt-4 max-w-md text-muted">
-            Whether you&rsquo;re a retailer looking to enhance the wine shopping experience, a
-            distributor wanting your wines matched with the right customers, or just curious
-            about how WineQ works, we look forward to connecting.
+            Whether you&rsquo;re a pharmacy retailer looking to enhance the shopper experience, a
+            brand wanting your products matched with the right customers, or just curious about
+            how ThisOne.ai works, we look forward to connecting.
           </p>
           <div className="mt-8">
             <p className="text-sm font-semibold text-brand-dark">Address</p>

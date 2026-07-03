@@ -47,7 +47,7 @@ export async function POST(request: Request) {
   const resend = new Resend(apiKey);
 
   const { error } = await resend.emails.send({
-    from: "WineQ.ai Contact Form <onboarding@resend.dev>",
+    from: "ThisOne.ai Contact Form <onboarding@resend.dev>",
     to,
     replyTo: body.email,
     subject: `New contact form submission from ${body.firstName} ${body.lastName}`,
