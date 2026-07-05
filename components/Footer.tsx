@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const storyLinks = [
   { href: "/our-technology", label: "Our Technology" },
@@ -18,6 +21,10 @@ const socialLinks = [
 ];
 
 export default function Footer() {
+  const pathname = usePathname();
+
+  if (pathname?.startsWith("/demo")) return null;
+
   return (
     <footer className="border-t border-black/5 bg-surface">
       <div className="mx-auto grid max-w-6xl gap-10 px-6 py-12 sm:grid-cols-3">
