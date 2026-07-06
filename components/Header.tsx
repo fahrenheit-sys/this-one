@@ -36,6 +36,9 @@ export default function Header() {
           <a href={CALCULATOR_HREF} className="transition hover:text-brand">
             Calculator
           </a>
+          <Link href="/demo" className="transition hover:text-brand">
+            Live Demo
+          </Link>
         </nav>
 
         <div className="hidden items-center gap-4 md:flex">
@@ -77,6 +80,9 @@ export default function Header() {
           <a href={CALCULATOR_HREF} className="py-2 transition hover:text-brand">
             Calculator
           </a>
+          <Link href="/demo" className="py-2 transition hover:text-brand" onClick={() => setOpen(false)}>
+            Live Demo
+          </Link>
           <Link
             href="/retailer"
             className="py-2 transition hover:text-brand"
