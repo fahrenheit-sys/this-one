@@ -8,6 +8,15 @@ import StepTopBar from "@/components/demo/StepTopBar";
 import OptionCard from "@/components/demo/OptionCard";
 import ProductCard from "@/components/demo/ProductCard";
 import {
+  CATEGORIES,
+  TAXONOMY,
+  getBandForScore,
+  type CategoryId,
+  type CategoryTaxonomy,
+  type ChoiceTaxonomy,
+  type SurveyTaxonomy,
+} from "@/lib/taxonomy";
+import {
   IconVitamins,
   IconSkincare,
   IconFragrance,
@@ -32,82 +41,146 @@ import {
   IconCreamJar,
 } from "@/components/icons/DemoIcons";
 
-const TOTAL_STEPS = 5;
+// Every category taxonomy shape is known statically here. A plain `if (x.kind !== ...)`
+// guard doesn't survive into nested closures (JSX callbacks, helper functions defined
+// later), so assert-and-return through a typed function instead — that gives these
+// constants a concrete type, not a narrowed-at-one-point union.
+function assertChoice(t: CategoryTaxonomy, name: string): ChoiceTaxonomy {
+  if (t.kind !== "choice") throw new Error(`Expected ${name} to be a choice taxonomy`);
+  return t;
+}
+function assertSurvey(t: CategoryTaxonomy, name: string): SurveyTaxonomy {
+  if (t.kind !== "survey") throw new Error(`Expected ${name} to be a survey taxonomy`);
+  return t;
+}
 
-const categories = [
-  { id: "vitamins", label: "Vitamins & Supplements", count: "2,600", enabled: true, icon: <IconVitamins /> },
-  { id: "skincare", label: "Skincare", count: "2,800", enabled: false, icon: <IconSkincare /> },
-  { id: "fragrances", label: "Fragrances", count: "2,300", enabled: false, icon: <IconFragrance /> },
-];
+const vitaminsTaxonomy = assertChoice(TAXONOMY.vitamins_supplements, "vitamins_supplements");
+const skincareTaxonomy = assertSurvey(TAXONOMY.skincare, "skincare");
+const fragrancesTaxonomy = assertSurvey(TAXONOMY.fragrances, "fragrances");
 
-const healthNeeds = [
-  { id: "bone", label: "Bone, Joints, Muscles", count: "153", enabled: true, icon: <IconBone /> },
-  { id: "brain", label: "Brain & Mind", count: "9", enabled: false, icon: <IconBrain /> },
-  { id: "immunity", label: "Cold, Flu & Immunity", count: "114", enabled: false, icon: <IconVirus /> },
-  { id: "digestive", label: "Digestive Health", count: "53", enabled: false, icon: <IconStomach /> },
-  {
-    id: "energy",
-    label: "Energy, Performance & Recovery",
-    count: "2,300",
-    enabled: false,
-    icon: <IconEnergy />,
-  },
-  { id: "eye", label: "Eye Health", count: "15", enabled: false, icon: <IconEye /> },
-  {
-    id: "general",
-    label: "General Health & Wellbeing",
-    count: "141",
-    enabled: false,
-    icon: <IconStethoscope />,
-  },
-  { id: "hair", label: "Hair, Skin & Nails", count: "57", enabled: false, icon: <IconHand /> },
-  { id: "heart", label: "Heart & Circulation", count: "26", enabled: false, icon: <IconHeartPulse /> },
-  { id: "kids", label: "Kid's Health", count: "51", enabled: false, icon: <IconBabyHand /> },
-];
+const [healthNeedQuestion, ingredientsQuestion, deliveryFormatQuestion] = vitaminsTaxonomy.questions;
 
-const ingredients = [
-  {
-    id: "calcium",
-    label: "Calcium",
-    description: "Core mineral for strong bones and skeletal integrity.",
-    icon: <IconMolecule label="Ca" />,
-  },
-  {
-    id: "d3",
-    label: "Vitamin D3",
-    description: "Enhances calcium absorption and supports muscle function.",
-    icon: <IconMolecule label="D3" />,
-  },
-  {
-    id: "magnesium",
-    label: "Magnesium",
-    description: "Crucial for bone density, muscle relaxation, and cramp prevention.",
-    icon: <IconMolecule label="Mg" />,
-  },
-  {
-    id: "collagen",
-    label: "Collagen",
-    description: "(Type II or Hydrolyzed) – Supports joint health and connective tissue strength.",
-    icon: <IconCollagen />,
-  },
-  {
-    id: "glucosamine",
-    label: "Glucosamine & Chondroitin",
-    description: "Popular for joint cushioning, flexibility, and reducing inflammation",
-    icon: <IconJoint />,
-  },
-];
+const CATEGORY_ICONS: Record<CategoryId, ReactNode> = {
+  vitamins_supplements: <IconVitamins />,
+  skincare: <IconSkincare />,
+  fragrances: <IconFragrance />,
+};
 
-const deliveryTypes = [
-  { id: "capsule", label: "Capsule", icon: <IconCapsule /> },
-  { id: "tablet", label: "Tablet", icon: <IconTablet /> },
-  { id: "powder", label: "Powder", icon: <IconPowder /> },
-  { id: "liquid", label: "Liquid", icon: <IconLiquid /> },
-  { id: "gummi", label: "Gummi", icon: <IconGummi /> },
-  { id: "cream", label: "Cream", icon: <IconCreamJar /> },
-];
+const HEALTH_NEED_ICONS: Record<string, ReactNode> = {
+  bone_joints_muscles: <IconBone />,
+  brain_mind: <IconBrain />,
+  cold_flu_immunity: <IconVirus />,
+  digestive_health: <IconStomach />,
+  energy_performance_recovery: <IconEnergy />,
+  eye_health: <IconEye />,
+  general_health_wellbeing: <IconStethoscope />,
+  hair_skin_nails: <IconHand />,
+  heart_circulation: <IconHeartPulse />,
+  kids_health: <IconBabyHand />,
+};
 
-const products = [
+const INGREDIENT_ICONS: Record<string, ReactNode> = {
+  calcium: <IconMolecule label="Ca" />,
+  vitamin_d3: <IconMolecule label="D3" />,
+  magnesium: <IconMolecule label="Mg" />,
+  collagen: <IconCollagen />,
+  glucosamine_chondroitin: <IconJoint />,
+};
+
+const DELIVERY_FORMAT_ICONS: Record<string, ReactNode> = {
+  capsule: <IconCapsule />,
+  tablet: <IconTablet />,
+  powder: <IconPowder />,
+  liquid: <IconLiquid />,
+  gummi: <IconGummi />,
+  cream: <IconCreamJar />,
+};
+
+// Only this one health need is wired up end-to-end for the demo — everything else stays
+// dimmed, same restriction as before.
+const ENABLED_HEALTH_NEED = "bone_joints_muscles";
+
+type StepKey =
+  | "category"
+  | "health_need"
+  | "ingredients"
+  | "delivery_format"
+  | "moisture"
+  | "pigment"
+  | "tolerance"
+  | "floral_fresh"
+  | "sweet_earthy"
+  | "light_intense"
+  | "results";
+
+// All three flows are 5 steps long — keeps the step counter uniform across categories.
+const FLOWS: Record<CategoryId, StepKey[]> = {
+  vitamins_supplements: ["category", "health_need", "ingredients", "delivery_format", "results"],
+  skincare: ["category", "moisture", "pigment", "tolerance", "results"],
+  fragrances: ["category", "floral_fresh", "sweet_earthy", "light_intense", "results"],
+};
+
+const STEP_META: Record<StepKey, { breadcrumb: string; heading: string; subheading: string }> = {
+  category: {
+    breadcrumb: "Select Category",
+    heading: "First, select a category",
+    subheading: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum.",
+  },
+  health_need: {
+    breadcrumb: "Health Needs",
+    heading: "Next, select by need",
+    subheading:
+      "Tell us what you need help with—whether it's energy, immunity, digestion, or something else.",
+  },
+  ingredients: {
+    breadcrumb: "Vitamins",
+    heading: "Are you specifically after a particular vitamin/supplement?",
+    subheading:
+      "You can select up to two options from the list of vitamins and supplements below to tailor your preferences.",
+  },
+  delivery_format: {
+    breadcrumb: "Vitamin Type",
+    heading: "Do you have a preferred type in mind?",
+    subheading: "Select the delivery format that best suits your patient's preferences or dietary needs.",
+  },
+  moisture: {
+    breadcrumb: "Skin Assessment",
+    heading: "Let's check your skin's moisture",
+    subheading: "Answer these quick questions about how your skin feels day-to-day.",
+  },
+  pigment: {
+    breadcrumb: "Skin Assessment",
+    heading: "Now, a bit about your skin tone",
+    subheading: "These help us understand how your skin reacts to sun and healing.",
+  },
+  tolerance: {
+    breadcrumb: "Skin Assessment",
+    heading: "Finally, how sensitive is your skin?",
+    subheading: "This helps us avoid recommending anything too harsh for you.",
+  },
+  floral_fresh: {
+    breadcrumb: "Scent Profile",
+    heading: "Floral or fresh — what's your style?",
+    subheading: "Pick the point on the spectrum that feels most like you.",
+  },
+  sweet_earthy: {
+    breadcrumb: "Scent Profile",
+    heading: "Sweet or earthy?",
+    subheading: "Choose whichever feels closest to your usual taste.",
+  },
+  light_intense: {
+    breadcrumb: "Scent Profile",
+    heading: "How strong do you like your scent?",
+    subheading: "From a light everyday spritz to a bold statement scent.",
+  },
+  results: {
+    breadcrumb: "Product Recommendations",
+    heading: "Recommended Products",
+    subheading: "Based on your selections, here are the top products that best match your needs.",
+  },
+};
+
+const VITAMIN_PRODUCTS = [
   { rank: "01", name: "Blackmores Special Tablet", location: "Aisle 4, Bay 10", price: "$0.20 Per Dose" },
   { rank: "02", name: "Swisse BCDS", location: "Aisle 4, Bay 12", price: "$0.30 Per Dose" },
   {
@@ -133,35 +206,100 @@ const products = [
   },
 ];
 
-const stepMeta: Record<number, { breadcrumb: string; heading: string; subheading: string }> = {
-  1: {
-    breadcrumb: "Select Category",
-    heading: "First, select a category",
-    subheading: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum.",
+type ScoredProduct = { name: string; location: string; price: string; scores: Record<string, number> };
+
+const SKINCARE_PRODUCTS: ScoredProduct[] = [
+  {
+    name: "Hydraboost Rich Cream",
+    location: "Aisle 2, Bay 3",
+    price: "$18.50 Per Unit",
+    scores: { moisture: 11, pigment: 8, tolerance: 9 },
   },
-  2: {
-    breadcrumb: "Health Needs",
-    heading: "Next, select by need",
-    subheading:
-      "Tell us what you need help with—whether it's energy, immunity, digestion, or something else.",
+  {
+    name: "Balance Daily Lotion",
+    location: "Aisle 2, Bay 4",
+    price: "$14.00 Per Unit",
+    scores: { moisture: 8, pigment: 8, tolerance: 8 },
   },
-  3: {
-    breadcrumb: "Vitamins",
-    heading: "Are you specifically after a particular vitamin/supplement?",
-    subheading:
-      "You can select up to two options from the list of vitamins and supplements below to tailor your preferences.",
+  {
+    name: "UltraLight Gel Moisturizer",
+    location: "Aisle 2, Bay 5",
+    price: "$12.90 Per Unit",
+    scores: { moisture: 5, pigment: 6, tolerance: 7 },
   },
-  4: {
-    breadcrumb: "Vitamin Type",
-    heading: "Do you have a preferred type in mind?",
-    subheading: "Select the delivery format that best suits your patient's preferences or dietary needs.",
+  {
+    name: "Soothe Sensitive Balm",
+    location: "Aisle 2, Bay 6",
+    price: "$16.20 Per Unit",
+    scores: { moisture: 9, pigment: 7, tolerance: 11 },
   },
-  5: {
-    breadcrumb: "Product Recommendations",
-    heading: "Recommended Products",
-    subheading: "Based on your selections, here are the top supplements that best match your patients needs.",
+  {
+    name: "Brightening Pigment Serum",
+    location: "Aisle 2, Bay 7",
+    price: "$22.00 Per Unit",
+    scores: { moisture: 7, pigment: 11, tolerance: 8 },
   },
-};
+];
+
+const FRAGRANCE_PRODUCTS: ScoredProduct[] = [
+  {
+    name: "Rose Bloom EDP",
+    location: "Aisle 6, Bay 1",
+    price: "$65.00",
+    scores: { floral_fresh: 1, sweet_earthy: 2, light_intense: 3 },
+  },
+  {
+    name: "Ocean Citrus Splash",
+    location: "Aisle 6, Bay 2",
+    price: "$48.00",
+    scores: { floral_fresh: 5, sweet_earthy: 4, light_intense: 2 },
+  },
+  {
+    name: "Amber Musk Woods",
+    location: "Aisle 6, Bay 3",
+    price: "$72.00",
+    scores: { floral_fresh: 3, sweet_earthy: 5, light_intense: 5 },
+  },
+  {
+    name: "Vanilla Sky Gourmand",
+    location: "Aisle 6, Bay 4",
+    price: "$58.00",
+    scores: { floral_fresh: 2, sweet_earthy: 1, light_intense: 4 },
+  },
+  {
+    name: "Green Fern Fresh",
+    location: "Aisle 6, Bay 5",
+    price: "$39.00",
+    scores: { floral_fresh: 4, sweet_earthy: 3, light_intense: 1 },
+  },
+];
+
+// Same distance formula as lib/widget/ranking.ts's survey-category branch — closest overall
+// distance across every axis in `answers` wins, so different answers genuinely reorder results.
+function rankByDistance(products: ScoredProduct[], answers: Record<string, number>) {
+  function distance(product: ScoredProduct) {
+    return Object.entries(answers).reduce(
+      (sum, [axis, value]) => sum + Math.abs((product.scores[axis] ?? 0) - value),
+      0,
+    );
+  }
+  return [...products].sort((a, b) => distance(a) - distance(b));
+}
+
+function computeSkinAxisScores(answers: Record<string, number>) {
+  const scores: Record<string, number> = { moisture: 0, pigment: 0, tolerance: 0 };
+  for (const q of skincareTaxonomy.questions) {
+    scores[q.axis] += answers[q.id] ?? 2; // neutral default for unanswered questions
+  }
+  return scores;
+}
+
+function bandSummary(taxonomy: typeof skincareTaxonomy, scores: Record<string, number>) {
+  return taxonomy.axes
+    .map((axis) => getBandForScore(axis, scores[axis.id] ?? 0)?.label)
+    .filter(Boolean)
+    .join(" · ");
+}
 
 function StepHeading({ heading, subheading }: { heading: string; subheading: string }) {
   return (
@@ -172,13 +310,68 @@ function StepHeading({ heading, subheading }: { heading: string; subheading: str
   );
 }
 
+function PillQuestion({
+  label,
+  options,
+  value,
+  onSelect,
+}: {
+  label: string;
+  options: { label: string; points: number }[];
+  value?: number;
+  onSelect: (points: number) => void;
+}) {
+  return (
+    <div className="rounded-xl border border-black/10 bg-white p-5 text-left">
+      <p className="font-medium text-brand-dark">{label}</p>
+      <div className="mt-3 flex flex-wrap gap-2">
+        {options.map((opt) => (
+          <button
+            key={opt.label}
+            type="button"
+            onClick={() => onSelect(opt.points)}
+            className={`rounded-full border px-4 py-2 text-sm font-medium transition ${
+              value === opt.points
+                ? "border-brand bg-brand-light text-brand-dark"
+                : "border-black/10 text-muted hover:border-brand"
+            }`}
+          >
+            {opt.label}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function DemoPage() {
-  const [step, setStep] = useState(1);
+  const [category, setCategory] = useState<CategoryId>("vitamins_supplements");
+  const [stepIndex, setStepIndex] = useState(0);
   const [selectedIngredients, setSelectedIngredients] = useState<string[]>([]);
+  const [skinAnswers, setSkinAnswers] = useState<Record<string, number>>({});
+  const [fragranceAnswers, setFragranceAnswers] = useState<Record<string, number>>({});
   const [phone, setPhone] = useState("");
   const [sent, setSent] = useState(false);
 
-  const meta = stepMeta[step];
+  const flow = FLOWS[category];
+  const stepKey = flow[stepIndex];
+  const meta = STEP_META[stepKey];
+
+  function selectCategory(id: CategoryId) {
+    setCategory(id);
+    setStepIndex(1);
+    setSelectedIngredients([]);
+    setSkinAnswers({});
+    setFragranceAnswers({});
+  }
+
+  function goNext() {
+    setStepIndex((i) => Math.min(flow.length - 1, i + 1));
+  }
+
+  function goBack() {
+    setStepIndex((i) => Math.max(0, i - 1));
+  }
 
   function toggleIngredient(id: string) {
     setSelectedIngredients((prev) => {
@@ -196,44 +389,41 @@ export default function DemoPage() {
 
   let content: ReactNode = null;
 
-  if (step === 1) {
+  if (stepKey === "category") {
     content = (
       <div className="mx-auto grid max-w-3xl gap-6 sm:grid-cols-3">
-        {categories.map((c) => (
+        {CATEGORIES.map((c) => (
           <OptionCard
             key={c.id}
-            icon={c.icon}
+            icon={CATEGORY_ICONS[c.id]}
             label={c.label}
-            sublabel={c.count}
-            enabled={c.enabled}
-            onClick={() => c.enabled && setStep(2)}
+            onClick={() => selectCategory(c.id)}
           />
         ))}
       </div>
     );
-  } else if (step === 2) {
+  } else if (stepKey === "health_need") {
     content = (
       <div className="mx-auto grid max-w-5xl gap-6 sm:grid-cols-3 lg:grid-cols-5">
-        {healthNeeds.map((n) => (
+        {healthNeedQuestion.options.map((n) => (
           <OptionCard
             key={n.id}
-            icon={n.icon}
+            icon={HEALTH_NEED_ICONS[n.id]}
             label={n.label}
-            sublabel={n.count}
-            enabled={n.enabled}
-            onClick={() => n.enabled && setStep(3)}
+            enabled={n.id === ENABLED_HEALTH_NEED}
+            onClick={() => n.id === ENABLED_HEALTH_NEED && goNext()}
           />
         ))}
       </div>
     );
-  } else if (step === 3) {
+  } else if (stepKey === "ingredients") {
     content = (
       <div>
         <div className="mx-auto grid max-w-5xl gap-6 sm:grid-cols-3 lg:grid-cols-5">
-          {ingredients.map((i) => (
+          {ingredientsQuestion.options.map((i) => (
             <OptionCard
               key={i.id}
-              icon={i.icon}
+              icon={INGREDIENT_ICONS[i.id]}
               label={i.label}
               description={i.description}
               selected={selectedIngredients.includes(i.id)}
@@ -247,7 +437,7 @@ export default function DemoPage() {
             type="button"
             onClick={() => {
               setSelectedIngredients([]);
-              setStep(4);
+              goNext();
             }}
             className="inline-flex items-center gap-2 rounded-full bg-brand px-6 py-3 text-sm font-semibold text-white transition hover:bg-brand-dark"
           >
@@ -257,7 +447,7 @@ export default function DemoPage() {
           <button
             type="button"
             disabled={selectedIngredients.length === 0}
-            onClick={() => setStep(4)}
+            onClick={goNext}
             className="inline-flex items-center gap-2 rounded-full bg-brand px-6 py-3 text-sm font-semibold text-white transition hover:bg-brand-dark disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-brand"
           >
             Next <span aria-hidden>→</span>
@@ -265,17 +455,89 @@ export default function DemoPage() {
         </div>
       </div>
     );
-  } else if (step === 4) {
+  } else if (stepKey === "delivery_format") {
     content = (
       <div className="mx-auto grid max-w-3xl gap-6 sm:grid-cols-3">
-        {deliveryTypes.map((d) => (
-          <OptionCard key={d.id} icon={d.icon} label={d.label} onClick={() => setStep(5)} />
+        {deliveryFormatQuestion.options.map((d) => (
+          <OptionCard key={d.id} icon={DELIVERY_FORMAT_ICONS[d.id]} label={d.label} onClick={goNext} />
         ))}
       </div>
     );
+  } else if (stepKey === "moisture" || stepKey === "pigment" || stepKey === "tolerance") {
+    const questions = skincareTaxonomy.questions.filter((q) => q.axis === stepKey);
+    content = (
+      <div className="mx-auto max-w-2xl space-y-4">
+        {questions.map((q) => (
+          <PillQuestion
+            key={q.id}
+            label={q.label}
+            options={q.options}
+            value={skinAnswers[q.id]}
+            onSelect={(points) => setSkinAnswers((prev) => ({ ...prev, [q.id]: points }))}
+          />
+        ))}
+        <div className="flex justify-end">
+          <button
+            type="button"
+            onClick={goNext}
+            className="inline-flex items-center gap-2 rounded-full bg-brand px-6 py-3 text-sm font-semibold text-white transition hover:bg-brand-dark"
+          >
+            Next <span aria-hidden>→</span>
+          </button>
+        </div>
+      </div>
+    );
+  } else if (stepKey === "floral_fresh" || stepKey === "sweet_earthy" || stepKey === "light_intense") {
+    const question = fragrancesTaxonomy.questions.find((q) => q.axis === stepKey)!;
+    content = (
+      <div className="mx-auto max-w-2xl">
+        <PillQuestion
+          label={question.label}
+          options={question.options}
+          value={fragranceAnswers[stepKey]}
+          onSelect={(points) => {
+            setFragranceAnswers((prev) => ({ ...prev, [stepKey]: points }));
+            goNext();
+          }}
+        />
+      </div>
+    );
   } else {
+    // results
+    let products: { rank: string; name: string; location: string; price: string; badge?: { label: string; className: string } }[];
+    let summary: string | null = null;
+
+    if (category === "vitamins_supplements") {
+      products = VITAMIN_PRODUCTS;
+    } else if (category === "skincare") {
+      const scores = computeSkinAxisScores(skinAnswers);
+      summary = bandSummary(skincareTaxonomy, scores);
+      products = rankByDistance(SKINCARE_PRODUCTS, scores).map((p, idx) => ({
+        rank: String(idx + 1).padStart(2, "0"),
+        name: p.name,
+        location: p.location,
+        price: p.price,
+        badge: idx === 0 ? { label: "Best Match", className: "bg-brand" } : undefined,
+      }));
+    } else {
+      summary = bandSummary(fragrancesTaxonomy, fragranceAnswers);
+      products = rankByDistance(FRAGRANCE_PRODUCTS, fragranceAnswers).map((p, idx) => ({
+        rank: String(idx + 1).padStart(2, "0"),
+        name: p.name,
+        location: p.location,
+        price: p.price,
+        badge: idx === 0 ? { label: "Best Match", className: "bg-brand" } : undefined,
+      }));
+    }
+
     content = (
       <div>
+        {summary && (
+          <p className="mx-auto -mt-4 mb-6 max-w-2xl text-center text-sm font-medium text-brand-dark">
+            Your Profile: {summary}
+          </p>
+        )}
+
         <div className="mx-auto grid max-w-5xl gap-6 sm:grid-cols-3 lg:grid-cols-5">
           {products.map((p) => (
             <ProductCard
@@ -328,9 +590,9 @@ export default function DemoPage() {
         <Container className="space-y-8">
           <StepTopBar
             label={meta.breadcrumb}
-            step={step}
-            total={TOTAL_STEPS}
-            onBack={step > 1 ? () => setStep((s) => s - 1) : undefined}
+            step={stepIndex + 1}
+            total={flow.length}
+            onBack={stepIndex > 0 ? goBack : undefined}
           />
 
           <StepHeading heading={meta.heading} subheading={meta.subheading} />
