@@ -12,6 +12,8 @@ const navLinks = [
   { href: "/contact-us", label: "Contact Us" },
 ];
 
+const CALCULATOR_HREF = "/revenue-tool"; // static HTML rewrite, not a Next.js route — use a plain <a>
+
 export default function Header() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
@@ -31,14 +33,22 @@ export default function Header() {
               {link.label}
             </Link>
           ))}
+          <a href={CALCULATOR_HREF} className="transition hover:text-brand">
+            Calculator
+          </a>
         </nav>
 
-        <Link
-          href="/contact-us"
-          className="hidden rounded-full bg-brand px-5 py-2 text-sm font-semibold text-white transition hover:bg-brand-dark md:inline-block"
-        >
-          Book a demo
-        </Link>
+        <div className="hidden items-center gap-4 md:flex">
+          <Link href="/retailer" className="text-sm font-medium text-foreground transition hover:text-brand">
+            Retailer Login
+          </Link>
+          <Link
+            href="/contact-us"
+            className="rounded-full bg-brand px-5 py-2 text-sm font-semibold text-white transition hover:bg-brand-dark"
+          >
+            Book a demo
+          </Link>
+        </div>
 
         <button
           type="button"
@@ -64,6 +74,16 @@ export default function Header() {
               {link.label}
             </Link>
           ))}
+          <a href={CALCULATOR_HREF} className="py-2 transition hover:text-brand">
+            Calculator
+          </a>
+          <Link
+            href="/retailer"
+            className="py-2 transition hover:text-brand"
+            onClick={() => setOpen(false)}
+          >
+            Retailer Login
+          </Link>
         </nav>
       )}
     </header>
