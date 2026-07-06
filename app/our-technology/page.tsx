@@ -10,12 +10,12 @@ const stats = [
 
 const features = [
   {
-    title: "AI-Powered Product Matching Engine",
-    body: "Proprietary algorithms combine customer preferences with product data to deliver instant recommendations across digital and physical retail.",
+    title: "Category-Specific Matching Engine",
+    body: "Vitamins & supplements are matched by health need and active ingredient. Skincare uses a proven dermatologist-style skin assessment across moisture, pigment, and tolerance. Fragrance is matched by scent profile — floral vs. fresh, sweet vs. earthy, light vs. intense. Not one generic AI chatbot guessing at every category.",
   },
   {
-    title: "3-Question Needs Assessment",
-    body: "A minimal interface determines a shopper's needs and preferences in under 30 seconds to boost engagement and conversions.",
+    title: "As Few as 3 Questions",
+    body: "A short, category-specific assessment determines a shopper's needs in under 30 seconds — whatever the category calls for, from a health concern to a skin profile to a scent preference.",
   },
   {
     title: "Zero Hardware Integration",
@@ -23,11 +23,11 @@ const features = [
   },
   {
     title: "Retail Media Monetization Layer",
-    body: "Supplement, skincare, and fragrance brands can pay for featured product placements within recommendations.",
+    body: "Brands reserve a limited number of placement slots per campaign and pay only for the SKUs they feature — funding the platform so retailers use it at no cost. Which product actually gets recommended is still driven by the best match for the shopper and the best margin for the retailer.",
   },
   {
     title: "Real-Time Analytics Dashboard",
-    body: "Live reporting on customer preferences, interaction rates, and conversion metrics.",
+    body: "Live reporting on widget opens, click-throughs, and — question by question — exactly which needs, ingredients, and preferences your shoppers are asking about most.",
   },
   {
     title: "Omnichannel Compatibility",

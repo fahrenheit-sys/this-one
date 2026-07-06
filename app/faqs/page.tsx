@@ -23,7 +23,11 @@ const faqs = [
   },
   {
     q: "What kind of questions does the chatbot ask?",
-    a: "Shoppers answer three straightforward questions about their needs, concerns, or preferences — such as skin type, wellness goals, or scent preference — after which the AI suggests matching products.",
+    a: "It depends on the category. For vitamins & supplements, shoppers pick their health need and preferred ingredients. For skincare, we use a quick dermatologist-style skin assessment covering moisture, pigment, and tolerance. For fragrance, shoppers choose their scent style and how strong they like it. Either way, it takes under 30 seconds and ends in a specific, ranked product recommendation.",
+  },
+  {
+    q: "Does featuring a product just mean it went to the highest bidder?",
+    a: "No. Placement in a campaign is limited to brands who've reserved a slot, but which specific product actually gets recommended to each shopper is still driven by the best match to their answers and the best margin for your pharmacy — so recommendations stay genuinely useful, not just paid-for.",
   },
   {
     q: "Is it suitable for small retailers or independent pharmacies?",

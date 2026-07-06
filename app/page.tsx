@@ -5,16 +5,20 @@ import BenefitTabs from "@/components/BenefitTabs";
 
 const benefits = [
   {
-    title: "Personalization",
-    body: "Every recommendation is tailored to the shopper's needs, concerns, or preferences — not a generic bestseller list.",
+    title: "Real Personalization",
+    body: "Vitamins are matched by health need and ingredient. Skincare uses a quick dermatologist-style skin assessment. Fragrance is matched by scent profile. Never a generic bestseller list.",
   },
   {
     title: "Plug-and-Play Setup",
     body: "Deploy via QR code in-store or a lightweight, no-code embed online. No hardware, no POS integration, no IT project.",
   },
   {
-    title: "Cost-Effective",
-    body: "Retailers use ThisOne.ai at no cost — the platform runs on a retail media model funded by participating brands and suppliers.",
+    title: "A Revenue Stream, Not a Cost",
+    body: "Your pharmacy uses ThisOne.ai free. Vitamin, skincare, and fragrance brands pay for a limited number of placement slots per campaign — that funding runs the platform and pays you.",
+  },
+  {
+    title: "Real-Time Shopper Insights",
+    body: "Every campaign comes with a live dashboard showing exactly what shoppers are asking for — by need, ingredient, and price point — intelligence you don't get from browsing alone.",
   },
 ];
 
@@ -28,9 +32,9 @@ export default function Home() {
               Win-Win-Wellness
             </h1>
             <p className="mt-6 max-w-md text-lg text-muted">
-              ThisOne.ai is an AI wellness advisor that turns pharmacy aisle overwhelm into
-              confident purchases — boosting sales and loyalty for retailers, brands, and
-              shoppers.
+              ThisOne.ai matches every shopper to the right vitamin, skincare, or fragrance
+              product in under 30 seconds — and because the brands who want to reach your
+              shoppers fund the platform, it costs your pharmacy nothing to run.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <CtaLink href="/contact-us">Book a demo</CtaLink>
@@ -52,9 +56,9 @@ export default function Home() {
               Meet your 24/7 AI wellness advisor
             </h2>
             <p className="mt-4 text-muted">
-              Retailers using ThisOne.ai have seen up to 25% revenue growth and 30% higher cart
-              completion rates by putting a knowledgeable product advisor in every customer&rsquo;s
-              pocket — day or night.
+              92% of shoppers buy the product ThisOne.ai recommends, and retailers see up to 25%
+              revenue growth and 30% higher cart completion by putting a knowledgeable product
+              advisor in every customer&rsquo;s pocket — day or night.
             </p>
             <div className="mt-6">
               <CtaLink href="/contact-us">Get the chatbot</CtaLink>
@@ -72,7 +76,7 @@ export default function Home() {
           <h2 className="text-center text-3xl font-bold text-brand-dark">
             Why retailers choose ThisOne.ai
           </h2>
-          <div className="mt-12 grid gap-8 sm:grid-cols-3">
+          <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {benefits.map((b) => (
               <div key={b.title} className="rounded-2xl bg-white p-8 text-center shadow-sm">
                 <h3 className="text-lg font-bold text-brand-dark">{b.title}</h3>

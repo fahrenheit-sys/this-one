@@ -30,8 +30,10 @@ export default function CaseStudy() {
           <div>
             <h2 className="text-xl font-bold text-brand-dark">The Solution</h2>
             <p className="mt-3 text-muted">
-              Vitality Chemist implemented the ThisOne.ai AI wellness advisor chatbot to provide
-              personalized guidance throughout the selection process.
+              Vitality Chemist added ThisOne.ai&rsquo;s guided AI wellness advisor across its
+              vitamins, skincare, and fragrance ranges — a fast, category-specific quiz that
+              replaced generic browsing with a confident, ranked recommendation in under 30
+              seconds.
             </p>
           </div>
         </Container>

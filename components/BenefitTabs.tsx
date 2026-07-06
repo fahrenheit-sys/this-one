@@ -7,13 +7,13 @@ const tabs = [
   {
     label: "Retailers",
     heading: "Turn browsers into confident buyers",
-    body: "Give shoppers a 3-question guided experience that matches them to the right vitamin, skincare, or fragrance product in under 30 seconds — in-store via QR code or online via chatbot, with no POS or hardware changes required.",
+    body: "Give shoppers a fast, guided experience — a few tailored questions about their needs — that matches them to the right vitamin, skincare, or fragrance product in under 30 seconds, in-store via QR code or online via chatbot. It's free to run, and you get a live dashboard on everything your shoppers are asking for.",
     cta: { href: "/case-study", label: "See in action" },
   },
   {
     label: "Brands",
     heading: "Get your products in front of the right shopper",
-    body: "The retail media layer lets supplement, skincare, and fragrance brands pay to be featured in relevant recommendations, reaching shoppers at the exact moment they're deciding what to buy.",
+    body: "Run a campaign that puts your product in front of shoppers actively looking for it: reserve a limited number of placement slots per category for the dates that matter to you, and pay only for the SKUs you feature.",
     cta: { href: "/contact-us", label: "Book a demo" },
   },
   {
