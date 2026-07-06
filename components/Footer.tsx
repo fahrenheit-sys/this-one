@@ -23,7 +23,7 @@ const socialLinks = [
 export default function Footer() {
   const pathname = usePathname();
 
-  if (pathname?.startsWith("/demo")) return null;
+  if (pathname?.startsWith("/demo") || pathname?.startsWith("/retailer")) return null;
 
   return (
     <footer className="border-t border-black/5 bg-surface">

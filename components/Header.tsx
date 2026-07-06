@@ -16,7 +16,7 @@ export default function Header() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
-  if (pathname?.startsWith("/demo")) return null;
+  if (pathname?.startsWith("/demo") || pathname?.startsWith("/retailer")) return null;
 
   return (
     <header className="sticky top-0 z-50 border-b border-black/5 bg-white">
